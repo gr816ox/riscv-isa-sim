@@ -36,7 +36,6 @@ int main()
             mems,
             plugin_devices,
             htif_args,
-            default_dm_config,
             nullptr,
             true,
             nullptr,

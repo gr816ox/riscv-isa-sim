@@ -311,7 +311,6 @@ int main(int argc, char** argv)
   bool use_rbb = false;
   unsigned dmi_rti = 0;
   reg_t blocksz = 64;
-  debug_module_config_t dm_config = default_dm_config;
   cfg_arg_t<size_t> nprocs(1);
 
   cfg_t cfg(/*default_initrd_bounds=*/std::make_pair((reg_t)0, (reg_t)0),
@@ -418,25 +417,25 @@ int main(int argc, char** argv)
     }
   });
   parser.option(0, "dm-progsize", 1,
-      [&](const char* s){dm_config.progbufsize = atoul_safe(s);});
+      [&](const char* s){cfg.dm_config.progbufsize = atoul_safe(s);});
   parser.option(0, "dm-no-impebreak", 0,
-      [&](const char UNUSED *s){dm_config.support_impebreak = false;});
+      [&](const char UNUSED *s){cfg.dm_config.support_impebreak = false;});
   parser.option(0, "dm-sba", 1,
-      [&](const char* s){dm_config.max_sba_data_width = atoul_safe(s);});
+      [&](const char* s){cfg.dm_config.max_sba_data_width = atoul_safe(s);});
   parser.option(0, "dm-auth", 0,
-      [&](const char UNUSED *s){dm_config.require_authentication = true;});
+      [&](const char UNUSED *s){cfg.dm_config.require_authentication = true;});
   parser.option(0, "dmi-rti", 1,
       [&](const char* s){dmi_rti = atoul_safe(s);});
   parser.option(0, "dm-abstract-rti", 1,
-      [&](const char* s){dm_config.abstract_rti = atoul_safe(s);});
+      [&](const char* s){cfg.dm_config.abstract_rti = atoul_safe(s);});
   parser.option(0, "dm-no-hasel", 0,
-      [&](const char UNUSED *s){dm_config.support_hasel = false;});
+      [&](const char UNUSED *s){cfg.dm_config.support_hasel = false;});
   parser.option(0, "dm-no-abstract-csr", 0,
-      [&](const char UNUSED *s){dm_config.support_abstract_csr_access = false;});
+      [&](const char UNUSED *s){cfg.dm_config.support_abstract_csr_access = false;});
   parser.option(0, "dm-no-abstract-fpr", 0,
-      [&](const char UNUSED *s){dm_config.support_abstract_fpr_access = false;});
+      [&](const char UNUSED *s){cfg.dm_config.support_abstract_fpr_access = false;});
   parser.option(0, "dm-no-halt-groups", 0,
-      [&](const char UNUSED *s){dm_config.support_haltgroups = false;});
+      [&](const char UNUSED *s){cfg.dm_config.support_haltgroups = false;});
   parser.option(0, "log-commits", 0,
                 [&](const char UNUSED *s){log_commits = true;});
   parser.option(0, "log", 1,
@@ -516,7 +515,7 @@ int main(int argc, char** argv)
   }
 
   sim_t s(&cfg, halted,
-      mems, plugin_devices, htif_args, dm_config, log_path, dtb_enabled, dtb_file,
+      mems, plugin_devices, htif_args, log_path, dtb_enabled, dtb_file,
       socket,
       cmd_file);
   std::unique_ptr<remote_bitbang_t> remote_bitbang((remote_bitbang_t *) NULL);
