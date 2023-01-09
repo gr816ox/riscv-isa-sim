@@ -6,7 +6,6 @@
 #include "opcodes.h"
 #include "mmu.h"
 
-#include "debug_rom.h"
 #include "debug_rom_defines.h"
 
 #if 0

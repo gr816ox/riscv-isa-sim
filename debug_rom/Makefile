@@ -9,10 +9,10 @@ COMPILE = $(CC) -nostdlib -nostartfiles -I.. -Tlink.ld
 ELFS = debug_rom
 DEPS = debug_rom.S link.ld ../riscv/debug_rom_defines.h ../riscv/encoding.h
 
-all: ../riscv/debug_rom.h
+all: ../riscv/debug_rom.cc
 
-../riscv/debug_rom.h:	debug_rom.raw
-	xxd -i $^ | sed "s/^unsigned/static const unsigned/" | sed "s/debug_rom/default_debug_rom/" > $@
+../riscv/debug_rom.cc:	debug_rom.raw
+	xxd -i $^ | sed "s/^unsigned/const unsigned/" | sed "s/debug_rom/default_debug_rom/" | sed "1s/^/#include \"debug_module.h\"\n/" > $@
 
 %.raw:	%
 	$(OBJCOPY) -O binary --only-section .text $^ $@
@@ -21,4 +21,4 @@ debug_rom:	$(DEPS)
 	$(COMPILE) -o $@ $<
 
 clean:
-	rm -f $(ELFS) debug_rom*.raw ../riscv/debug_rom.h
+	rm -f $(ELFS) debug_rom*.raw ../riscv/debug_rom.cc

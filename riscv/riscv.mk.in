@@ -21,7 +21,6 @@ riscv_install_hdrs = \
 	common.h \
 	csrs.h \
 	debug_module.h \
-	debug_rom.h \
 	debug_rom_defines.h \
 	decode.h \
 	devices.h \
@@ -60,7 +59,8 @@ riscv_srcs = \
 	clint.cc \
 	plic.cc \
 	ns16550.cc \
-	debug_module.cc \
+	debug_rom.cc \
+        debug_module.cc \
 	remote_bitbang.cc \
 	jtag_dtm.cc \
 	csrs.cc \

@@ -12,6 +12,9 @@ class sim_t;
 class bus_t;
 class processor_t;
 
+extern const unsigned char default_debug_rom_raw[];
+extern const unsigned int default_debug_rom_raw_len;
+
 typedef struct {
   bool haltreq;
   bool resumereq;
