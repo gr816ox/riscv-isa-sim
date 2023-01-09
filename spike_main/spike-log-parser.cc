@@ -39,7 +39,8 @@ int main(int UNUSED argc, char** argv)
             /*default_pmpregions=*/16,
             /*default_mem_layout=*/std::vector<mem_cfg_t>(),
             /*default_hartids=*/std::vector<int>(),
-            /*default_real_time_clint=*/false);
+            /*default_real_time_clint=*/false,
+            /*default_dm_config=*/default_dm_config);
 
   isa_parser_t isa(isa_string, DEFAULT_PRIV);
   processor_t p(&isa, &cfg, 0, 0, false, nullptr, cerr);

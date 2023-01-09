@@ -27,7 +27,8 @@ int main()
             16,
             mem_cfg,
             hartids,
-            false);
+            false,
+	    default_dm_config);
   std::vector<std::pair<reg_t, abstract_device_t*>> plugin_devices;
   std::vector<std::string> htif_args {"pk", "hello"};
   std::vector<std::pair<reg_t, mem_t*>> mems = make_mems(cfg.mem_layout());

@@ -325,7 +325,8 @@ int main(int argc, char** argv)
             /*default_pmpregions=*/16,
             /*default_mem_layout=*/parse_mem_layout("2048"),
             /*default_hartids=*/std::vector<int>(),
-            /*default_real_time_clint=*/false);
+            /*default_real_time_clint=*/false,
+            /*default_dm_config=*/default_dm_config);
 
   auto const device_parser = [&plugin_devices](const char *s) {
     const std::string str(s);
