@@ -7,6 +7,20 @@
 #include "decode.h"
 #include <cassert>
 
+typedef struct {
+  // Size of program_buffer in 32-bit words, as exposed to the rest of the
+  // world.
+  unsigned progbufsize;
+  unsigned max_sba_data_width;
+  bool require_authentication;
+  unsigned abstract_rti;
+  bool support_hasel;
+  bool support_abstract_csr_access;
+  bool support_abstract_fpr_access;
+  bool support_haltgroups;
+  bool support_impebreak;
+} debug_module_config_t;
+
 typedef enum {
   endianness_little,
   endianness_big
