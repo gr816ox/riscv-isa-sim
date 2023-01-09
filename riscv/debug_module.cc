@@ -131,8 +131,8 @@ bool debug_module_t::load(reg_t addr, size_t len, uint8_t* bytes)
   addr = DEBUG_START + addr;
 
   if (addr >= DEBUG_ROM_ENTRY &&
-      (addr + len) <= (DEBUG_ROM_ENTRY + debug_rom_raw_len)) {
-    memcpy(bytes, debug_rom_raw + addr - DEBUG_ROM_ENTRY, len);
+      (addr + len) <= (DEBUG_ROM_ENTRY + default_debug_rom_raw_len)) {
+    memcpy(bytes, default_debug_rom_raw + addr - DEBUG_ROM_ENTRY, len);
     return true;
   }
 

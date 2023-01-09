@@ -12,7 +12,7 @@ DEPS = debug_rom.S link.ld ../riscv/debug_rom_defines.h ../riscv/encoding.h
 all: ../riscv/debug_rom.h
 
 ../riscv/debug_rom.h:	debug_rom.raw
-	xxd -i $^ | sed "s/^unsigned/static const unsigned/" > $@
+	xxd -i $^ | sed "s/^unsigned/static const unsigned/" | sed "s/debug_rom/default_debug_rom/" > $@
 
 %.raw:	%
 	$(OBJCOPY) -O binary --only-section .text $^ $@
