@@ -30,23 +30,12 @@ int main()
             false);
   std::vector<std::pair<reg_t, abstract_device_t*>> plugin_devices;
   std::vector<std::string> htif_args {"pk", "hello"};
-  debug_module_config_t dm_config = {
-    .progbufsize = 2,
-    .max_sba_data_width = 0,
-    .require_authentication = false,
-    .abstract_rti = 0,
-    .support_hasel = true,
-    .support_abstract_csr_access = true,
-    .support_abstract_fpr_access = true,
-    .support_haltgroups = true,
-    .support_impebreak = true
-  };
   std::vector<std::pair<reg_t, mem_t*>> mems = make_mems(cfg.mem_layout());
   sim_t sim(&cfg, false,
             mems,
             plugin_devices,
             htif_args,
-            dm_config,
+            default_dm_config,
             nullptr,
             true,
             nullptr,

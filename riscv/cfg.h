@@ -21,6 +21,19 @@ typedef struct {
   bool support_impebreak;
 } debug_module_config_t;
 
+
+const debug_module_config_t default_dm_config = debug_module_config_t {
+  .progbufsize = 2,
+  .max_sba_data_width = 0,
+  .require_authentication = false,
+  .abstract_rti = 0,
+  .support_hasel = true,
+  .support_abstract_csr_access = true,
+  .support_abstract_fpr_access = true,
+  .support_haltgroups = true,
+  .support_impebreak = true
+};
+
 typedef enum {
   endianness_little,
   endianness_big
